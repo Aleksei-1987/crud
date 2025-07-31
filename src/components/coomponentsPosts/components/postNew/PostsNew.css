@@ -1,0 +1,23 @@
+.post__container {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+
+.post__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.post__label__textarea {
+  margin-bottom: 10px;
+}
+.close_btn {
+  position: absolute;
+  top: 78px;
+  left: 445px;
+  cursor: pointer;
+}
+#post__texterea {
+  resize: none;
+}
