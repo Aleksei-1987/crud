@@ -1,10 +1,3 @@
-/**
- * Renders a textarea for posting content.
- *
- * @param {string} content - The content of the textarea
- * @param {(e: React.ChangeEvent<HTMLTextAreaElement>) => void} handleChange - The function to handle changes in the textarea
- * @return {JSX.Element} The rendered textarea component
- */
 const PostFormTextarea = ({
   content,
   handleChange,
@@ -14,11 +7,11 @@ const PostFormTextarea = ({
 }) => {
   return (
     <>
-      <label htmlFor="post__texterea" className="post__label__textarea">
+      <label htmlFor="post__textarea" className="post__label__textarea">
         Напишите пост:
       </label>
       <textarea
-        id="post__texterea"
+        id="post__textarea"
         value={content}
         onChange={handleChange}
         name="content"

@@ -1,10 +1,5 @@
 import HeaderItem from "./HeaderItem";
 import "./header.css"
-/**
- * Renders a header component (navigation) with a list of items.
- *
- * @return {JSX.Element} The rendered header component.
- */
 
 const Header = () => {
   const items = [

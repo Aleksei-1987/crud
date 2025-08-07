@@ -1,5 +1,5 @@
 export type FetchStatusProps = {
   isLoading: boolean;
-  data?: Array<{content: string; createdAt: number; id: number}>;
+  data?: Array<{id: number; content: string; createdAt: number}>;
   error: string | null;
 }
