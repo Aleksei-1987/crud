@@ -48,7 +48,7 @@ const PostView = () => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       isLoading={isLoading}
-      error={error}
+      error={(error && error.message)|| null} // Исправляем проверку ошибки
       contentLoadingButton="Сохранение..."
       contentButton="Сохранить"
     />
