@@ -5,36 +5,36 @@ import { Link } from "react-router-dom";
 
 const PostsList = () => {
   const { data, isLoading, error, fetchNow } = useFetch({
-    url: "http://localhost:5173/posts",
+    url: "http://localhost:7070/posts",
   });
 
   useEffect(() => {
-    fetchNow(); // Отправляем запрос при монтировании компонента
+    fetchNow();
   }, []);
 
-  // Реализация метода handleDelete
+  
   const handleDelete = async (id: number) => {
     try {
-      await fetch(`http://localhost:5173/posts/${id}`, {
+      await fetch(`http://localhost:7070/posts/${id}`, {
         method: "DELETE",
       });
-      fetchNow(); // Перезагружаем данные после успешного удаления
+      fetchNow();
     } catch (err) {
-      console.error('Ошибка при удалении поста:', err); // Логируем ошибку
+      console.error('Ошибка при удалении поста:', err);
     }
   };
 
   if (isLoading) {
-    return <div>Загрузка...</div>; // Индикатор загрузки
+    return <div>Загрузка...</div>;
   }
 
   if (error) {
     console.log('Ошибка:', error);
-    return <div>Ошибка загрузки данных: {JSON.stringify(error)}</div>; // Вывод ошибки
+    return <div>Ошибка загрузки данных: {JSON.stringify(error)}</div>;
   }
 
   if (!data || !data.length) {
-    return <div>Нет доступных постов.</div>; // Нет данных
+    return <div>Нет доступных постов.</div>;
   }
 
   return (

@@ -6,18 +6,18 @@ import PostFormContainer from "../posts/PostFormContainer";
 const PostNew = () => {
   const [content, setContent] = useState<string>("");
   const [_id, setId] = useState<number>(0);
-  const [loading, setLoading] = useState(false); // Добавлен флаг загрузки
-  const [formError, setFormError] = useState<string | null>(null); // Добавлено состояние ошибки формы
+  const [loading, setLoading] = useState(false); 
+  const [formError, setFormError] = useState<string | null>(null); 
 
   const { isLoading, error, fetchNow } = useFetch({
-    url: "http://localhost:5173/posts",
+    url: "http://localhost:7070/posts",
     options: {
       method: "POST",
       body: JSON.stringify({ content }),
     },
   });
 
-  // Извлекаем хранящиеся данные из Local Storage при загрузке компонента
+  
   useEffect(() => {
     const storedContent = localStorage.getItem("content");
     const storedId = localStorage.getItem("id");
@@ -41,13 +41,13 @@ const PostNew = () => {
     }
   }, []);
 
-  // Обработчик изменений в тексте
+ 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value.trim(); // Trim уберёт пробелы слева-справа
+    const value = e.target.value.trim(); 
     setContent(value);
   };
 
-  // Запрашивает сервер и увеличивает ID при успешной отправке
+  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -56,7 +56,7 @@ const PostNew = () => {
       return;
     }
 
-    setLoading(true); // Начинаем показывать индикатор загрузки
+    setLoading(true); 
     await fetchNow();
 
     if (error) {
@@ -64,16 +64,16 @@ const PostNew = () => {
     } else {
       setId((id) => {
         const newId = id + 1;
-        localStorage.setItem("id", String(newId)); // Сохраняем увеличенный ID
+        localStorage.setItem("id", String(newId)); 
         return newId;
       });
-      localStorage.removeItem("content"); // Удаляем контент после удачной отправки
+      localStorage.removeItem("content"); 
       window.location.href = "/posts";
       setContent("");
-      setFormError(null); // Очистка ошибки после успешной отправки
+      setFormError(null); 
     }
 
-    setLoading(false); // Завершаем индикаторы загрузки
+    setLoading(false); 
   };
 
   return (
@@ -81,8 +81,8 @@ const PostNew = () => {
       content={content}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
-      isLoading={isLoading || loading} // Комбинируем оба флага загрузки
-      error={formError || (error && error.message) || null} // Объединяем внутренние и внешние ошибки
+      isLoading={isLoading || loading} 
+      error={formError || (error && error.message) || null} 
       contentLoadingButton="Отправка..."
       contentButton="Отправить"
     />
